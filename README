@@ -1,0 +1,19 @@
+ruby-ctemplate
+==============
+
+This is an experimental Ruby binding for Google's CTemplate template language for C++ (http://google-ctemplate.googlecode.com).
+
+Benchmarks
+==========
+
+puts Benchmark.measure{ 10000.times{
+  Mustache.render("Hello {{planet}}", :planet => "World!")
+}}
+
+  1.010000   0.020000   1.030000 (  1.028379)
+
+puts Benchmark.measure{ 10000.times{
+  CTemplate.new("Hello {{planet}}").render({ 'planet' => 'World!' })
+}}
+
+  0.220000   0.000000   0.220000 (  0.225086)
